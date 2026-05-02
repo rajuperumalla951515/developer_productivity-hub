@@ -1,0 +1,224 @@
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.app-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+  padding: 30px 0;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.app-main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Developer Selector */
+.developer-selector {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.developer-selector h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.developer-selector select {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.developer-selector select:hover,
+.developer-selector select:focus {
+  border-color: #764ba2;
+  outline: none;
+}
+
+.developer-info {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.developer-info p {
+  margin: 8px 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.developer-info strong {
+  color: #333;
+}
+
+/* Metrics Section */
+.metrics-section {
+  margin-bottom: 30px;
+}
+
+.metrics-section h2 {
+  color: white;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.metric-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.metric-card h3 {
+  color: #667eea;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.metric-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin: 10px 0;
+}
+
+.metric-unit {
+  color: #999;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Insights Section */
+.insights-section {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.insights-section h2 {
+  color: #667eea;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.insights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.insight-text {
+  padding: 12px 15px;
+  background: #f5f7ff;
+  border-left: 4px solid #667eea;
+  border-radius: 6px;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Suggestions Section */
+.suggestions-section {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.suggestions-section h2 {
+  color: #667eea;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.suggestions-list ol {
+  list-style-position: inside;
+  color: #333;
+  margin-left: 20px;
+}
+
+.suggestion-item {
+  padding: 12px 0;
+  line-height: 1.6;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app {
+    padding: 15px;
+  }
+
+  .app-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-value {
+    font-size: 2rem;
+  }
+
+  .developer-selector,
+  .insights-section,
+  .suggestions-section {
+    padding: 15px;
+  }
+
+  .insights-section h2,
+  .suggestions-section h2 {
+    font-size: 1.2rem;
+  }
+}

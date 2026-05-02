@@ -1,0 +1,226 @@
+{
+  "developers": [
+    {
+      "id": 1,
+      "name": "Dev Raj",
+      "email": "dev.raj@core-services.com",
+      "role": "Senior Backend Developer",
+      "team": "Core Services",
+      "product": "Core Services Platform"
+    },
+    {
+      "id": 2,
+      "name": "Prabhas",
+      "email": "prabhas@user-experience.com",
+      "role": "Frontend Developer",
+      "team": "User Experience",
+      "product": "User Experience Suite"
+    },
+    {
+      "id": 3,
+      "name": "Rohan Gupta",
+      "email": "rohan.gupta@platform-engineering.com",
+      "role": "Full Stack Developer",
+      "team": "Platform Engineering",
+      "product": "Platform Engineering Hub"
+    },
+    {
+      "id": 4,
+      "name": "Anika Singh",
+      "email": "anika.singh@infrastructure.com",
+      "role": "DevOps Engineer",
+      "team": "Infrastructure",
+      "product": "Infrastructure Automation"
+    }
+  ],
+  "issues": [
+    {
+      "id": 101,
+      "developerId": 1,
+      "title": "Fix login bug",
+      "status": "Done",
+      "startTime": "2024-04-01T10:00:00Z",
+      "endTime": "2024-04-03T15:30:00Z"
+    },
+    {
+      "id": 102,
+      "developerId": 1,
+      "title": "Add dark mode",
+      "status": "Done",
+      "startTime": "2024-04-05T09:00:00Z",
+      "endTime": "2024-04-08T14:00:00Z"
+    },
+    {
+      "id": 103,
+      "developerId": 1,
+      "title": "Refactor API client",
+      "status": "Done",
+      "startTime": "2024-04-10T10:30:00Z",
+      "endTime": "2024-04-12T16:45:00Z"
+    },
+    {
+      "id": 201,
+      "developerId": 2,
+      "title": "Redesign dashboard",
+      "status": "Done",
+      "startTime": "2024-04-02T14:00:00Z",
+      "endTime": "2024-04-06T11:30:00Z"
+    },
+    {
+      "id": 202,
+      "developerId": 2,
+      "title": "Add responsive design",
+      "status": "Done",
+      "startTime": "2024-04-08T10:00:00Z",
+      "endTime": "2024-04-10T15:00:00Z"
+    },
+    {
+      "id": 301,
+      "developerId": 3,
+      "title": "Build payment API",
+      "status": "Done",
+      "startTime": "2024-04-01T09:00:00Z",
+      "endTime": "2024-04-05T17:00:00Z"
+    },
+    {
+      "id": 302,
+      "developerId": 3,
+      "title": "Setup database migration",
+      "status": "Done",
+      "startTime": "2024-04-07T10:00:00Z",
+      "endTime": "2024-04-09T14:30:00Z"
+    }
+  ],
+  "prs": [
+    {
+      "id": 1001,
+      "developerId": 1,
+      "title": "Fix login bug",
+      "status": "merged",
+      "createdAt": "2024-04-02T11:00:00Z",
+      "mergedAt": "2024-04-03T14:00:00Z"
+    },
+    {
+      "id": 1002,
+      "developerId": 1,
+      "title": "Add dark mode",
+      "status": "merged",
+      "createdAt": "2024-04-06T10:00:00Z",
+      "mergedAt": "2024-04-08T13:00:00Z"
+    },
+    {
+      "id": 1003,
+      "developerId": 1,
+      "title": "Refactor API client",
+      "status": "merged",
+      "createdAt": "2024-04-11T09:00:00Z",
+      "mergedAt": "2024-04-12T15:00:00Z"
+    },
+    {
+      "id": 1004,
+      "developerId": 1,
+      "title": "Add caching layer",
+      "status": "merged",
+      "createdAt": "2024-04-13T10:00:00Z",
+      "mergedAt": "2024-04-14T11:30:00Z"
+    },
+    {
+      "id": 2001,
+      "developerId": 2,
+      "title": "Redesign dashboard",
+      "status": "merged",
+      "createdAt": "2024-04-02T15:00:00Z",
+      "mergedAt": "2024-04-06T10:30:00Z"
+    },
+    {
+      "id": 2002,
+      "developerId": 2,
+      "title": "Add responsive design",
+      "status": "merged",
+      "createdAt": "2024-04-08T11:00:00Z",
+      "mergedAt": "2024-04-10T14:45:00Z"
+    },
+    {
+      "id": 3001,
+      "developerId": 3,
+      "title": "Build payment API",
+      "status": "merged",
+      "createdAt": "2024-04-01T10:00:00Z",
+      "mergedAt": "2024-04-05T16:30:00Z"
+    },
+    {
+      "id": 3002,
+      "developerId": 3,
+      "title": "Setup database migration",
+      "status": "merged",
+      "createdAt": "2024-04-07T11:00:00Z",
+      "mergedAt": "2024-04-09T13:45:00Z"
+    }
+  ],
+  "deployments": [
+    {
+      "id": 2001,
+      "prId": 1001,
+      "status": "success",
+      "deployedAt": "2024-04-03T15:00:00Z"
+    },
+    {
+      "id": 2002,
+      "prId": 1002,
+      "status": "success",
+      "deployedAt": "2024-04-08T14:30:00Z"
+    },
+    {
+      "id": 2003,
+      "prId": 1003,
+      "status": "success",
+      "deployedAt": "2024-04-12T16:00:00Z"
+    },
+    {
+      "id": 2004,
+      "prId": 1004,
+      "status": "success",
+      "deployedAt": "2024-04-14T12:30:00Z"
+    },
+    {
+      "id": 2005,
+      "prId": 2001,
+      "status": "success",
+      "deployedAt": "2024-04-06T11:00:00Z"
+    },
+    {
+      "id": 2006,
+      "prId": 2002,
+      "status": "success",
+      "deployedAt": "2024-04-10T15:15:00Z"
+    },
+    {
+      "id": 2007,
+      "prId": 3001,
+      "status": "success",
+      "deployedAt": "2024-04-05T17:00:00Z"
+    },
+    {
+      "id": 2008,
+      "prId": 3002,
+      "status": "success",
+      "deployedAt": "2024-04-09T14:00:00Z"
+    }
+  ],
+  "bugs": [
+    {
+      "id": 3001,
+      "issueId": 101,
+      "title": "Login redirect issue",
+      "foundIn": "production",
+      "createdAt": "2024-04-10T09:00:00Z"
+    },
+    {
+      "id": 3002,
+      "issueId": 201,
+      "title": "CSS alignment issue",
+      "foundIn": "staging",
+      "createdAt": "2024-04-11T10:00:00Z"
+    }
+  ]
+}
