@@ -1,7 +1,14 @@
 {
   "name": "developer-mvp",
   "version": "1.0.0",
-  "description": "Developer Performance Metrics MVP",
+  "description": "React + Vite developer productivity dashboard MVP",
+  "keywords": [
+    "react",
+    "vite",
+    "dashboard",
+    "productivity",
+    "mvp"
+  ],
   "type": "module",
   "main": "src/index.js",
   "scripts": {
