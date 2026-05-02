@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, XAxis, YAxis, CartesianGrid } from 'recharts';
 import MetricCard from './components/MetricsCard';
 import InsightCard from './components/Insights';
 import RotatingSuggestions from './components/RotatingSuggestions';
@@ -144,6 +145,44 @@ function App() {
       focus: 'development flow',
       review: 'workflow reviews',
       release: 'release rhythm',
+    };
+
+    // Mock data for Recharts
+    const lineChartData = [
+      { name: 'Week 1', leadTime: metrics.leadTime + 2, deployments: Math.max(1, metrics.deployments - 1) },
+      { name: 'Week 2', leadTime: metrics.leadTime + 1, deployments: metrics.deployments },
+      { name: 'Week 3', leadTime: Math.max(1, metrics.leadTime - 0.5), deployments: metrics.deployments + 1 },
+      { name: 'Week 4', leadTime: metrics.leadTime, deployments: metrics.deployments },
+    ];
+
+    const pieChartData = [
+      { name: 'New Features', value: 55, color: '#3b82f6' }, // blue-500
+      { name: 'Tech Debt', value: 25, color: '#8b5cf6' }, // violet-500
+      { name: 'Bug Fixes', value: 20, color: '#f43f5e' }, // rose-500
+    ];
+
+    const graphActionItems = {
+      1: {
+        trend: "Your lead time occasionally spikes. Focus on breaking down backend tasks into smaller, deployable chunks.",
+        distribution: "You're heavily focused on new features. Consider dedicating a specific day to resolve the tech debt load."
+      },
+      2: {
+        trend: "Extremely consistent deployment rhythm. Keep your frontend delivery pipeline just as it is.",
+        distribution: "Bug fixes take up 20% of your time. Reviewing UI edge-cases earlier could help reduce this."
+      },
+      3: {
+        trend: "Lead time is higher than average. Pair programming might help unblock your platform integration work faster.",
+        distribution: "A healthy balance of tasks. Ensuring tech debt doesn't grow will keep the platform stable."
+      },
+      4: {
+        trend: "Strong and frequent deployments. Your DevOps automation is yielding excellent speed.",
+        distribution: "Given your high feature output, ensure infrastructure tech debt is documented before it becomes a bottleneck."
+      }
+    };
+    
+    const userActionItems = graphActionItems[selectedDeveloper.id] || {
+      trend: "Monitor your deployment frequency vs lead time to ensure smooth delivery.",
+      distribution: "Maintain a healthy balance between shipping features and cleaning up technical debt."
     };
 
     const metricSuggestions = {
@@ -335,6 +374,80 @@ function App() {
                     </MetricCard>
                   </div>
                 </div>
+
+                {/* Performance Trend and Task Distribution Charts */}
+                <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <div className="rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-sm backdrop-blur-xl">
+                    <h3 className="text-lg font-bold text-slate-800 mb-6">Performance Trend</h3>
+                    <div className="h-64">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <LineChart data={lineChartData}>
+                          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                          <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 12 }} dy={10} />
+                          <YAxis yAxisId="left" axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 12 }} dx={-10} />
+                          <YAxis yAxisId="right" orientation="right" axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 12 }} dx={10} />
+                          <RechartsTooltip cursor={{ fill: '#f8fafc' }} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                          <Line yAxisId="left" type="monotone" dataKey="leadTime" stroke="#3b82f6" strokeWidth={3} dot={{ r: 4, strokeWidth: 2 }} activeDot={{ r: 6 }} name="Lead Time (days)" />
+                          <Line yAxisId="right" type="monotone" dataKey="deployments" stroke="#10b981" strokeWidth={3} dot={{ r: 4, strokeWidth: 2 }} activeDot={{ r: 6 }} name="Deployments" />
+                        </LineChart>
+                      </ResponsiveContainer>
+                    </div>
+                  </div>
+
+                  <div className="rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-sm backdrop-blur-xl flex flex-col">
+                    <h3 className="text-lg font-bold text-slate-800 mb-2">Task Distribution</h3>
+                    <div className="flex-1 min-h-[256px]">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <PieChart>
+                          <Pie
+                            data={pieChartData}
+                            cx="50%"
+                            cy="50%"
+                            innerRadius={60}
+                            outerRadius={80}
+                            paddingAngle={5}
+                            dataKey="value"
+                            stroke="none"
+                          >
+                            {pieChartData.map((entry, index) => (
+                              <Cell key={`cell-${index}`} fill={entry.color} />
+                            ))}
+                          </Pie>
+                          <RechartsTooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                        </PieChart>
+                      </ResponsiveContainer>
+                    </div>
+                    <div className="flex justify-center flex-wrap gap-4 mt-2">
+                      {pieChartData.map((entry, idx) => (
+                        <div key={idx} className="flex items-center gap-1.5 text-xs font-medium text-slate-600 tracking-wide">
+                          <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: entry.color }}></span>
+                          {entry.name}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Dynamic Action Items Banner */}
+                <div className="mt-6 rounded-3xl border border-slate-200 bg-gradient-to-r from-indigo-50/50 to-white p-6 shadow-sm flex flex-col sm:flex-row sm:items-center gap-6">
+                  <div className="sm:w-1/3">
+                    <h3 className="text-xl font-bold text-indigo-900 mb-2 flex items-center gap-2">
+                      <span>🎯</span> Data Action Plan
+                    </h3>
+                    <p className="text-xs text-slate-500 italic">Personalized for {firstName}</p>
+                  </div>
+                  <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="bg-white rounded-2xl p-4 shadow-sm border border-indigo-100/50 transition duration-300 hover:shadow-md">
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-indigo-500 mb-1">Trend Analysis</p>
+                      <p className="text-sm text-slate-700 leading-relaxed">{userActionItems.trend}</p>
+                    </div>
+                    <div className="bg-white rounded-2xl p-4 shadow-sm border border-indigo-100/50 transition duration-300 hover:shadow-md">
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-indigo-500 mb-1">Task Alignment</p>
+                      <p className="text-sm text-slate-700 leading-relaxed">{userActionItems.distribution}</p>
+                    </div>
+                  </div>
+                </div>
+
               </div>
 
               {/* Insights and Suggestions Column */}
