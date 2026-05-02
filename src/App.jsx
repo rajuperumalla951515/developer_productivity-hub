@@ -22,6 +22,26 @@ function App() {
   const [pendingPage, setPendingPage] = useState(null);
   const [transitionStage, setTransitionStage] = useState('entered');
 
+  // Load custom suggestions from localStorage
+  const [userSuggestions, setUserSuggestions] = useState(() => {
+    const saved = localStorage.getItem('customDeveloperSuggestions');
+    return saved ? JSON.parse(saved) : {};
+  });
+
+  const handleAddSuggestion = (devId, metricId, text) => {
+    setUserSuggestions((prev) => {
+      const newState = { ...prev };
+      if (!newState[devId]) newState[devId] = {};
+      if (!newState[devId][metricId]) newState[devId][metricId] = [];
+      newState[devId][metricId].push({
+        icon: '👤',
+        text: text,
+      });
+      localStorage.setItem('customDeveloperSuggestions', JSON.stringify(newState));
+      return newState;
+    });
+  };
+
   const startPageTransition = (page) => {
     setPendingPage(page);
     setTransitionStage('exiting');
@@ -193,6 +213,12 @@ function App() {
       ],
     };
 
+    const getCombinedSuggestions = (metricId) => {
+      const defaultSugg = metricSuggestions[metricId] || [];
+      const customSugg = userSuggestions[selectedDeveloper.id]?.[metricId] || [];
+      return [...defaultSugg, ...customSugg];
+    };
+
     // Determine status colors for metrics
     const getMetricStatus = (metric, value) => {
       if (metric === 'leadTime') return value <= 3 ? 'good' : value <= 5 ? 'warning' : 'critical';
@@ -266,7 +292,10 @@ function App() {
                       status={getMetricStatus('leadTime', metrics.leadTime)}
                       icon="⏱️"
                     >
-                      <MetricRotatingSuggestions suggestions={metricSuggestions.leadTime} />
+                      <MetricRotatingSuggestions 
+                        suggestions={getCombinedSuggestions('leadTime')} 
+                        onAddSuggestion={(text) => handleAddSuggestion(selectedDeveloper.id, 'leadTime', text)}
+                      />
                     </MetricCard>
                     <MetricCard
                       label="Cycle Time"
@@ -275,7 +304,10 @@ function App() {
                       status={getMetricStatus('cycleTime', metrics.cycleTime)}
                       icon="🔄"
                     >
-                      <MetricRotatingSuggestions suggestions={metricSuggestions.cycleTime} />
+                      <MetricRotatingSuggestions 
+                        suggestions={getCombinedSuggestions('cycleTime')} 
+                        onAddSuggestion={(text) => handleAddSuggestion(selectedDeveloper.id, 'cycleTime', text)}
+                      />
                     </MetricCard>
                     <MetricCard
                       label="Bug Rate"
@@ -284,7 +316,10 @@ function App() {
                       status={getMetricStatus('bugRate', metrics.bugRate)}
                       icon="🐛"
                     >
-                      <MetricRotatingSuggestions suggestions={metricSuggestions.bugRate} />
+                      <MetricRotatingSuggestions 
+                        suggestions={getCombinedSuggestions('bugRate')} 
+                        onAddSuggestion={(text) => handleAddSuggestion(selectedDeveloper.id, 'bugRate', text)}
+                      />
                     </MetricCard>
                     <MetricCard
                       label="Deployments"
@@ -293,7 +328,10 @@ function App() {
                       status={getMetricStatus('deployments', metrics.deployments)}
                       icon="🚀"
                     >
-                      <MetricRotatingSuggestions suggestions={metricSuggestions.deployments} />
+                      <MetricRotatingSuggestions 
+                        suggestions={getCombinedSuggestions('deployments')} 
+                        onAddSuggestion={(text) => handleAddSuggestion(selectedDeveloper.id, 'deployments', text)}
+                      />
                     </MetricCard>
                   </div>
                 </div>
